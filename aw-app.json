@@ -1,0 +1,65 @@
+{
+  "manifest_version": 1,
+  "id": "google-cloud",
+  "name": "Google Cloud CLI",
+  "version": "0.1.0",
+  "description": "Installs the Google Cloud CLI (`gcloud`) into the workspace and provides a settings panel for project/account defaults and optional service-account JSON setup.",
+  "tier": "inprocess",
+  "publisher": "TekFlox",
+  "resource_estimate": { "cpu": "low", "memory": "-", "disk": "~250 MB" },
+
+  "runtime": {
+    "python": ">=3.11",
+    "entrypoint": "google_cloud_app.plugin:GoogleCloudAppPlugin",
+    "pip_requires": []
+  },
+
+  "permissions": [
+    "commands:install",
+    "routes:register",
+    "secrets:own",
+    "fs:workspace-data",
+    "net:outbound"
+  ],
+
+  "contributes": {
+    "routes": [{ "prefix": "/api/apps/google-cloud" }],
+    "system_clis": [
+      { "name": "gcloud", "installer": "scripts/install_gcloud.sh", "version": ">=578" }
+    ],
+    "settings_panels": [
+      { "id": "google-cloud.settings", "schema_ref": "#/config_schema" }
+    ]
+  },
+
+  "config_schema": {
+    "type": "object",
+      "properties": {
+      "gcloud_project": {
+        "type": "string",
+        "description": "Default Google Cloud project (`gcloud config set project`)."
+      },
+      "gcloud_account": {
+        "type": "string",
+        "description": "Default Google account or service account email (`gcloud config set account`)."
+      },
+      "gcloud_compute_region": {
+        "type": "string",
+        "description": "Default Compute Engine region (`gcloud config set compute/region`)."
+      },
+      "gcloud_compute_zone": {
+        "type": "string",
+        "description": "Default Compute Engine zone (`gcloud config set compute/zone`)."
+      },
+      "gcloud_service_account_json": {
+        "type": "string",
+        "x-secret": true,
+        "description": "Optional service-account key JSON. Stored in the zero-knowledge secret store and activated with `gcloud auth activate-service-account`."
+      }
+    },
+    "required": []
+  },
+
+  "dependencies": {},
+  "migrations": {}
+}
