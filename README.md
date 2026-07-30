@@ -1,6 +1,6 @@
 # aw-app-google-cloud
 
-Decoupled app for aw-workspace. Installs the **Google Cloud CLI** (`gcloud`)
+AW workspace app that installs the **Google Cloud CLI** (`gcloud`)
 into the workspace and provides a settings panel for Google Cloud defaults
 and optional service-account JSON setup.
 
