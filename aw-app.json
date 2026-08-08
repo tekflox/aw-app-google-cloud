@@ -2,18 +2,20 @@
   "manifest_version": 1,
   "id": "google-cloud",
   "name": "Google Cloud CLI",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Installs the Google Cloud CLI (`gcloud`) into the workspace and provides a settings panel for project/account defaults and optional service-account JSON setup.",
   "tier": "inprocess",
   "publisher": "TekFlox",
-  "resource_estimate": { "cpu": "low", "memory": "-", "disk": "~250 MB" },
-
+  "resource_estimate": {
+    "cpu": "low",
+    "memory": "-",
+    "disk": "~250 MB"
+  },
   "runtime": {
     "python": ">=3.11",
     "entrypoint": "google_cloud_app.plugin:GoogleCloudAppPlugin",
     "pip_requires": []
   },
-
   "permissions": [
     "commands:install",
     "routes:register",
@@ -21,20 +23,29 @@
     "fs:workspace-data",
     "net:outbound"
   ],
-
   "contributes": {
-    "routes": [{ "prefix": "/api/apps/google-cloud" }],
+    "routes": [
+      {
+        "prefix": "/api/apps/google-cloud"
+      }
+    ],
     "system_clis": [
-      { "name": "gcloud", "installer": "scripts/install_gcloud.sh", "version": ">=578" }
+      {
+        "name": "gcloud",
+        "installer": "scripts/install_gcloud.sh",
+        "version": ">=578"
+      }
     ],
     "settings_panels": [
-      { "id": "google-cloud.settings", "schema_ref": "#/config_schema" }
+      {
+        "id": "google-cloud.settings",
+        "schema_ref": "#/config_schema"
+      }
     ]
   },
-
   "config_schema": {
     "type": "object",
-      "properties": {
+    "properties": {
       "gcloud_project": {
         "type": "string",
         "description": "Default Google Cloud project (`gcloud config set project`)."
@@ -59,7 +70,6 @@
     },
     "required": []
   },
-
   "dependencies": {},
   "migrations": {}
 }
