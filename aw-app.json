@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "id": "google-cloud",
   "name": "Google Cloud CLI",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Installs the Google Cloud CLI (`gcloud`) into the workspace and provides a settings panel for project/account defaults and optional service-account JSON setup.",
   "tier": "inprocess",
   "publisher": "TekFlox",
